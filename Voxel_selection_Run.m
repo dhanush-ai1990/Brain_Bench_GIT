@@ -1,9 +1,9 @@
-
+dir = '/Users/Dhanush/Desktop/Projects/Brain\ Bench/GIT_DATA/'
 % average the voxels before regressing
 %sc = load(sprintf('data-science-P1.mat'));
 
-    sc = load(sprintf('AndersonetalJOCN2014_TACL2016_FMRIDAT.mat'));
-    st = load(sprintf('data-science-P1.mat'));
+    sc = load(sprintf('%sAndersonetalJOCN2014_TACL2016_FMRIDAT.mat',dir));
+    st = load(sprintf('%sdata-science-P1.mat',dir));
     % Average the voxels for each word before regressing.
     data = sc.Participant(1).datM2;
     data1 = st.data;
@@ -46,7 +46,7 @@ B_Indices_selected = AbsoluteIndices_B(1:toprated,1);
 
 for index = 1:size(A_Indices_selected,2)
     
-    A_Indices_selected(index,1)
+    A_Indices_selected(index,1);
 
 end;
 %Mbiggest = Msorted(end:-1:end-9)
