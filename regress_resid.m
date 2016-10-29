@@ -1,13 +1,13 @@
 %% Regress after average
-hdir = '/usr1/afyshe/';
-ddir = '/usr1/meg/20questions/features/';
+dir = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/';
+
 subjs = {'A','B','C','D','E','F','G','I','J'};
 for i = 1:1,
     fprintf('%i\n',i);
     subj = subjs{i};
-    sc = load(sprintf('%s_raw_avrg.mat',subj));
+    sc = load(sprintf('%d%s_raw_avrg.mat',dir,subj));
     words = sc.words;
-    A_percept = load(sprintf('20q_A_percept.mat'));
+    A_percept = load(sprintf('%d20q_A_percept.mat',dir));
     
     data = zscore(sc.data(:,:));
     size(data)
