@@ -7,7 +7,7 @@ for i = 1:9
     subj = subjs{i};
     sc = load(sprintf('%sAndersonetalJOCN2014_FMRIDAT.mat',dir));
     word = sc.Participant(i).wordC;
-    C = unique(word);
+    %C = unique(word);
     A_percept = zeros(70,1);
     % Calculating the length of each word
     for j = 1:70

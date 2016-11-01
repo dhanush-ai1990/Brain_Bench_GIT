@@ -7,14 +7,14 @@ for i = 1:9
     subj = subjs{i};
     sc = load(sprintf('%sAndersonetalJOCN2014_FMRIDAT.mat',dir));
     word = sc.Participant(i).wordC;
-    C = unique(word);
-    A_percept = zeros(70,1);
+    %C = unique(word);
+    A_percept = zeros(350,1);
     % Calculating the length of each word
-    for j = 1:70
-        len = length(C{j});
+    for j = 1:350
+        len = length(word{j});
         A_percept(j)= len;
     end;
-   
+    size(A_percept)
     % Average the voxels for each word before regressing.
     data_from_file = sc.Participant(i).datM2;
     %data1 = [];
@@ -36,7 +36,7 @@ for i = 1:9
     p_1(:,end+1)=1;
     x_fit = p_1*weightMatrix;
     data = data - x_fit;
-    data = reshape(data,size(data1));
+    data = reshape(data,size(data_from_file));
     data(1:10,1:10)
     save(sprintf('%sAnderson_Regress_output/Anderson_percept_residual_%s.mat',dir,subj),'data','C','-v7.3');
 end;
