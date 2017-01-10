@@ -19,7 +19,7 @@ for i = 1:9
     voxel_sel_A1 = voxel_selection(A1);% Performing Voxel selection
     size(voxel_sel_A1);
     [Asorted,AbsoluteIndices_A] = sort(voxel_sel_A1(:),'descend');
-    toprated_A = voxels1 * .13;
+    toprated_A = voxels1 * .1;
     A_Indices_selected = AbsoluteIndices_A(1:toprated_A,1);
 
 % Removing low scored voxels from data
@@ -33,10 +33,11 @@ for i = 1:9
     A_avg = [];
 
 for c=1:5:size(voxel_selected_A,1)
-    A_avg =cat(1,A_avg,mean(voxel_selected_A(c:c+4,:)));
+    A_avg =cat(1,A_avg,squeeze(mean(voxel_selected_A(c:c+4,:))));
 end;
     size(A_avg)
     data = A_avg;
+    data = voxel_selected_A;
     save(sprintf('%s%s_voxselected.mat',dir2,subj),'data','words','-v7.3');
 end;
 

@@ -8,16 +8,29 @@ from scipy.stats.stats import pearsonr
 import sys
 
 #File locations :
-outfile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/'
-infile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/MRI_VoxelDone/'
+
+outfile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/'
+infile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/MRI_VoxelDone/'
 subjs1 = ['P1','P2','P3','P4','P5','P6','P7','P8','P9']
+length = 30
 
 for i in range(9):
 	file_in = infile + str(subjs1[i]) +'_voxselected.mat'
 	print file_in
 	S1 = h5py.File(file_in)
 	Brain_data = S1['data'][()].transpose()
-	length = 60
+	"""
+	#TEMPORARY CODE ADDED HERE 
+	data_concrete = np.empty(shape=[30, Brain_data.shape[1]])	
+	ind =[4,5,8,11,12,13,15,17,19,23,26,29,33,37,38,40,42,44,45,46,50,51,60,61,62,63,64,66,67,69]
+	z = 0
+	for k in range(70):
+		if k in ind:
+			data_concrete [z,:]= Brain_data[k]
+			z+=1
+	Brain_data = data_concrete
+	Brain_data.shape
+	"""
 	input_mat = np.empty((length, length))		
 	input_mat.fill(0)						# initialize the mattrix made by input word vector
 

@@ -1,0 +1,30 @@
+Auditorium
+composer
+conservatory
+court
+defendant
+disco
+drum
+gallows
+guitarist
+handcuffs
+judge
+lawyer
+metronome
+musician
+noose
+penitentiary
+police station
+prison
+radio
+robe
+singer
+skeleton key
+stage
+tenor
+theater
+thief
+trumpet
+truncheon
+violin
+witness

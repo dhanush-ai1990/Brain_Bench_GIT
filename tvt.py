@@ -3,17 +3,17 @@ import h5py
 import numpy as np
 from scipy.stats.stats import pearsonr
 import sys
-"""
-P1_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P1_MRI.npy"
-P2_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P2_MRI.npy"
-P3_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P3_MRI.npy"
-P4_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P4_MRI.npy"
-P5_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P5_MRI.npy"
-P6_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P6_MRI.npy"
-P7_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P7_MRI.npy"
-P8_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P8_MRI.npy"
-P9_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P9_MRI.npy"
-"""
+
+B1_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Corr_matrix_Org_MRI/b1.npy"
+B2_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Corr_matrix_Org_MRI/b2.npy"
+B3_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Corr_matrix_Org_MRI/b3.npy"
+B4_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Corr_matrix_Org_MRI/b4.npy"
+B5_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Corr_matrix_Org_MRI/b5.npy"
+B6_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Corr_matrix_Org_MRI/b6.npy"
+B7_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Corr_matrix_Org_MRI/b7.npy"
+B8_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Corr_matrix_Org_MRI/b8.npy"
+B9_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Corr_matrix_Org_MRI/b9.npy"
+
 P1_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P1_MRI.npy"
 P2_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P2_MRI.npy"
 P3_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P3_MRI.npy"
@@ -23,6 +23,7 @@ P6_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/New
 P7_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P7_MRI.npy"
 P8_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P8_MRI.npy"
 P9_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P9_MRI.npy"
+
 """
 A_MAT = "./corr_mats/MEG/a.npy"
 B_MAT = "./corr_mats/MEG/b.npy"
@@ -34,9 +35,9 @@ G_MAT = "./corr_mats/MEG/g.npy"
 I_MAT = "./corr_mats/MEG/i.npy"
 J_MAT = "./corr_mats/MEG/j.npy"
 """
-DICTIONARY ="/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/Dictionary/dictionary_org.txt"
-DICTIONARY = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/Dictionary/Concrete.txt"
-size_words = 30
+
+DICTIONARY = DICTIONARY = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/Dictionary/Anderson_words.txt"
+
 def get_matrix_and_mask(vector_file):
 	unavailable = []	# list of indexes of word in brain data that did not appear in the input
 	word_vector = []	# input word vector
@@ -45,6 +46,7 @@ def get_matrix_and_mask(vector_file):
 	dictionary = {}
 	for line in (open(DICTIONARY, 'r')):
 		dictionary[line.strip()] = 0
+
 	# dic for input vectors
 	input_words = {}
 	# filter out words from the input that is not in the dictionary
@@ -52,12 +54,13 @@ def get_matrix_and_mask(vector_file):
 		tokens = line.strip().split()
 		word = tokens.pop(0)										
 		if word in dictionary: 						
-			input_words[word] = (map(float, tokens))
+			input_words[word] = (map(float, tokens))				
 
 	# find words that is in dictionary but not in the input, record their indexs for making a mask
 	for i, line in enumerate(open(DICTIONARY, 'r')):
 		if line.strip() not in input_words: 
 			unavailable.append(i) 
+
 	keylist = input_words.keys()
 	keylist.sort()
 	for key in keylist:
@@ -66,8 +69,7 @@ def get_matrix_and_mask(vector_file):
 	# print word_vector
 
 	word_vector = np.array(word_vector)		# cast word vector from a list of list to an array
-	length = word_vector.shape[0]		
-	# get the length of the word vector
+	length = word_vector.shape[0]			# get the length of the word vector
 	input_mat = np.empty((length, length))		
 	input_mat.fill(0)						# initialize the mattrix made by input word vector
 
@@ -82,14 +84,15 @@ def get_matrix_and_mask(vector_file):
 	# print (input_mat)
 
 	#create mask
-	mask = np.ones((size_words,size_words), dtype=bool)
-	for i in range(0, size_words):
-		for j in range(0,size_words):
+	mask = np.ones((70,70), dtype=bool)
+	for i in range(0, 70):
+		for j in range(0,70):
 			if (i in unavailable) or (j in unavailable):
 				mask[i,j] = False
 	# print mask 
 
 	length = len(word_vector)
+
 	return {
 		'input_mat' : input_mat,
 		'mask' : mask,
@@ -135,19 +138,40 @@ def two_vs_two (input_mat, brain_mat, length):
 			if part_a > part_b:
 				s += 1		
 	print s/float(total)	
+
 	# print "%d out of %d" % (s, total)
 	return s/float(total)
+
+def test():
+	P1 = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/P1_voxsel_test.mat"
+	S1 = h5py.File(P1)
+	Brain_data = S1['data'][()].transpose()
+	length = 60
+	test_mat = np.empty((length, length))		
+	test_mat.fill(0)						# initialize the mattrix made by input word vector
+
+	# calculating correlation and generate the mattrix
+	for word1 in range (0,length):
+		vector1 = Brain_data[word1,:]
+		for word2 in range (0,length):
+			vector2 = Brain_data[word2,:]
+			#print vector1
+			#print vector2
+			test_mat[word1][word2] = pearsonr(vector1, vector2)[0]
+	# print (input_mat)	
+	return test_mat
 
 
 def get_score(input_mat, brain_data_filename, mask, length):
 	brain_file = open(brain_data_filename, 'r')
 	brain_mat = np.load(brain_file)
+	#brain_mat = test()
 	brain_mat = np.reshape(brain_mat[mask], (length, length))
+
 	return two_vs_two(input_mat, brain_mat, length)
 
-
 def get_fMRI_average(input_mat, mask, length):
-	fMRI_score = get_score(input_mat,  P1_MAT, mask, length)
+	fMRI_score = get_score(input_mat, P1_MAT, mask, length)
 	fMRI_score += get_score(input_mat, P2_MAT, mask, length)
 	fMRI_score += get_score(input_mat, P3_MAT, mask, length)
 	fMRI_score += get_score(input_mat, P4_MAT, mask, length)
@@ -157,7 +181,7 @@ def get_fMRI_average(input_mat, mask, length):
 	fMRI_score += get_score(input_mat, P8_MAT, mask, length)
 	fMRI_score += get_score(input_mat, P9_MAT, mask, length)
 	return fMRI_score/9.0
-	#return fMRI_score/7.0
+
 
 def get_MEG_average(input_mat, mask, length):
 	MEG_score = get_score(input_mat, A_MAT, mask, length)
@@ -176,8 +200,9 @@ def run_test (input_file):
 	input_mat = obj['input_mat']
 	mask = obj['mask']
 	length = obj['length']
-	fMRI_score = 0
+
 	fMRI_score = get_fMRI_average(input_mat, mask, length)
+	print "MRI SCORE "  + str(fMRI_score)
 	MEG_score = 0
 	#MEG_score = get_MEG_average(input_mat, mask, length)
 

@@ -2,18 +2,17 @@ dir  = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/';
 dir2 = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/MRI_VoxelDone/';
 dir1 ='/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/MRI_RegressDone/';
 subjs1 = {'P1','P2','P3','P4','P5','P6','P7','P8','P9'};
-for i = 1:9
+for i = 1:1
     fprintf('%i\n',i);
     subj = subjs1{i};
 % average the voxels before regressing
 %sc = load(sprintf('data-science-P1.mat'));
     %sc = load(sprintf('%sAndersonetalJOCN2014_TACL2016_FMRIDAT.mat',dir));
     st = load(sprintf('%s%s_raw_notavrg_percept_residual_test.mat',dir1,subj));
-    % Average the voxels for each word before regressing.
     %data = sc.Participant(1).datM2;
     data1 = st.data;
     words = st.words;
-    labels =st.labels;
+    labels =st.labels
     %temp1 = [];
 %        temp1 =cat(1,temp1,cell2mat(data1(i)));
         %temp1 = [temp;mean(data1(i:i+5,:))];
