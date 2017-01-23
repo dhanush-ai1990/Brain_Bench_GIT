@@ -12,25 +12,29 @@ import sys
 outfile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/'
 infile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/MRI_VoxelDone/'
 subjs1 = ['P1','P2','P3','P4','P5','P6','P7','P8','P9']
-length = 30
+length = 70
 
 for i in range(9):
 	file_in = infile + str(subjs1[i]) +'_voxselected.mat'
 	print file_in
 	S1 = h5py.File(file_in)
+	#Brain_data = S1['data'][()].transpose()
 	Brain_data = S1['data'][()].transpose()
-	"""
-	#TEMPORARY CODE ADDED HERE 
-	data_concrete = np.empty(shape=[30, Brain_data.shape[1]])	
-	ind =[4,5,8,11,12,13,15,17,19,23,26,29,33,37,38,40,42,44,45,46,50,51,60,61,62,63,64,66,67,69]
+	
+
+	#TEMPORARY CODE ADDED HERE TO SORT THE BRAIN DATA 
+	data_sorted = np.empty(shape=[70, Brain_data.shape[1]])	
+	ind =[0,3,1,4,6,7,14,15,16,17,18,66,52,43,29,19,60,21,45,\
+	13,37,27,28,30,32,23,24,25,35,5,34,36,54,39,40,41,42,11,46,31,50,12,20,49,51,\
+	53,56,55,64,59,8,9,26,2,10,58,44,47,57,62,61,22,33,65,48,67,38,68,69,63]
 	z = 0
 	for k in range(70):
 		if k in ind:
-			data_concrete [z,:]= Brain_data[k]
+			data_sorted[z,:]= Brain_data[ind[k]]
 			z+=1
-	Brain_data = data_concrete
+	Brain_data = data_sorted
 	Brain_data.shape
-	"""
+	
 	input_mat = np.empty((length, length))		
 	input_mat.fill(0)						# initialize the mattrix made by input word vector
 
@@ -43,4 +47,5 @@ for i in range(9):
 			#print vector2
 			input_mat[word1][word2] = pearsonr(vector1, vector2)[0]
 	# print (input_mat)	
+	print input_mat.shape
 	np.save(outfile+str(subjs1[i])+'_MRI.npy', input_mat)

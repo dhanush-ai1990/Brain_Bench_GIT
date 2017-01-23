@@ -37,6 +37,7 @@ for c=1:5:size(voxel_selected_A,1)
 end;
     size(A_avg)
     data = A_avg;
+    data = voxel_selected_A;
     save(sprintf('%s%s_voxselected.mat',dir2,subj),'data','words','-v7.3');
 end;
 

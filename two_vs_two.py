@@ -35,8 +35,8 @@ I_MAT = "./corr_mats/MEG/i.npy"
 J_MAT = "./corr_mats/MEG/j.npy"
 """
 DICTIONARY ="/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/Dictionary/dictionary_org.txt"
-DICTIONARY = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/Dictionary/Concrete.txt"
-size_words = 30
+DICTIONARY = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/Dictionary/words.txt"
+size_words = 70
 def get_matrix_and_mask(vector_file):
 	unavailable = []	# list of indexes of word in brain data that did not appear in the input
 	word_vector = []	# input word vector
@@ -45,6 +45,7 @@ def get_matrix_and_mask(vector_file):
 	dictionary = {}
 	for line in (open(DICTIONARY, 'r')):
 		dictionary[line.strip()] = 0
+	print dictionary
 	# dic for input vectors
 	input_words = {}
 	# filter out words from the input that is not in the dictionary
@@ -90,6 +91,7 @@ def get_matrix_and_mask(vector_file):
 	# print mask 
 
 	length = len(word_vector)
+	print length
 	return {
 		'input_mat' : input_mat,
 		'mask' : mask,
