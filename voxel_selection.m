@@ -19,7 +19,7 @@ for v = 1:numVoxels
     % we just transpose.
     corrMatrix = corr(voxelStabilityMatrix');
     if v < 5
-        corrMatrix
+        corrMatrix;
     end
     % now we take the mean over
     voxelScores(v) = mean(corrMatrix(triu(corrMatrix,1) ~= 0));
