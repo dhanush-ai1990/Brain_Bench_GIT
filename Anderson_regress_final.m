@@ -26,7 +26,7 @@ for i = 1:9
     %p_1(:,end+1)=1;
     %x_fit = p_1*weightMatrix;
     %data = data - x_fit;
-    data = reshape(data,size(databck));
+    %data = reshape(data,size(databck));
     data = databck;
     save(sprintf('%s%s_raw_notavrg_percept_residual_test.mat',dir2,subj),'data','word','-v7.3');
 end;
