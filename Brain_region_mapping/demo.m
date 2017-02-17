@@ -23,6 +23,8 @@ for i = 1:9
     for i = 1:length(aal)
         aal{i};
     end
-save(sprintf('%s%s_brain_region.mat',path,subj),'aal','-v7.3');
+    A = cat(1, aal{:});
+    length(A)
+save(sprintf('%s%s_brain_region.mat',path,subj),'A','-v7.3');
 end;
 
