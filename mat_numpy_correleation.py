@@ -9,10 +9,10 @@ import sys
 
 #File locations :
 
-outfile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/'
-infile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/MRI_VoxelDone/'
+outfile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/'
+infile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/MRI_VoxelDone/'
 subjs1 = ['P1','P2','P3','P4','P5','P6','P7','P8','P9']
-length = 30
+length = 60
 
 for i in range(9):
 	file_in = infile + str(subjs1[i]) +'_voxselected.mat'
@@ -22,7 +22,7 @@ for i in range(9):
 	
 
 	#TEMPORARY CODE ADDED HERE TO SORT THE BRAIN DATA 
-	
+	"""
 	data_sorted = np.empty(shape=[30, Brain_data.shape[1]])	
 	ind = [4,15,17,66,29,19,60,45,13,37,23,5,40,42,11,46,50,12,51,64,8,26,44,62,61,33,67,38,69,63]
 	print len(ind)
@@ -39,6 +39,7 @@ for i in range(9):
 			z+=1
 	Brain_data = data_sorted
 	print Brain_data
+	"""
 	input_mat = np.empty((length, length))		
 	input_mat.fill(0)						# initialize the mattrix made by input word vector
 

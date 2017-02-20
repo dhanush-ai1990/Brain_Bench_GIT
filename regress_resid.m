@@ -4,7 +4,7 @@ dir1 = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/MRI_Ra
 dir2 ='/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/MRI_RegressDone/';
 %The word list is not present in Data Science Raw files. Reading an
 %alternate file to get the words
-tc = load(sprintf('%stemp.mat',dir));
+tc = load(sprintf('%sLabel.mat',dir));
 words = tc.words;
 labels = tc.labels;
 subjs = {'A','B','C','D','E','F','G','I','J'};
