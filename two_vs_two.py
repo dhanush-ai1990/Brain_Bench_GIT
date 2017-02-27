@@ -4,6 +4,7 @@ import numpy as np
 from scipy.stats.stats import pearsonr
 import sys
 
+
 P1_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P1_MRI.npy"
 P2_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P2_MRI.npy"
 P3_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P3_MRI.npy"
@@ -13,6 +14,16 @@ P6_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewN
 P7_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P7_MRI.npy"
 P8_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P8_MRI.npy"
 P9_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P9_MRI.npy"
+
+P1_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/temp1/P1_MRI.npy"
+P2_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/temp1/P2_MRI.npy"
+P3_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/temp1/P3_MRI.npy"
+P4_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/temp1/P4_MRI.npy"
+P5_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/temp1/P5_MRI.npy"
+P6_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/temp1/P6_MRI.npy"
+P7_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/temp1/P7_MRI.npy"
+P8_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/temp1/P8_MRI.npy"
+P9_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/temp1/P9_MRI.npy"
 """
 P1_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P1_MRI.npy"
 P2_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P2_MRI.npy"
@@ -36,6 +47,7 @@ J_MAT = "./corr_mats/MEG/j.npy"
 """
 DICTIONARY ="/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/Dictionary/dictionary_org.txt"
 #DICTIONARY = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/Dictionary/concrete.txt"
+word_vec_in ="/Users/Dhanush/Desktop/Projects/Brain_Bench/Word_Vectors/"
 size_words = 60
 def get_matrix_and_mask(vector_file):
 	unavailable = []	# list of indexes of word in brain data that did not appear in the input
@@ -56,7 +68,7 @@ def get_matrix_and_mask(vector_file):
 		word = word.lower()										
 		if word in dictionary: 						
 			input_words[word] = (map(float, tokens))
-	print len(dictionary)
+	#print len(dictionary)
 	# find words that is in dictionary but not in the input, record their indexs for making a mask
 	for i, line in enumerate(open(DICTIONARY, 'r')):
 		if line.strip() not in input_words: 
@@ -65,7 +77,7 @@ def get_matrix_and_mask(vector_file):
 	keylist.sort()
 	for key in keylist:
 	    word_vector.append(input_words[key])
-	print len(keylist)
+	#print len(keylist)
 	    # print "%s: %s" % (key, input_words[key])
 	# print word_vector
 
@@ -138,7 +150,7 @@ def two_vs_two (input_mat, brain_mat, length):
 			total += 1
 			if part_a > part_b:
 				s += 1		
-	print s/float(total)	
+	#print s/float(total)	
 	# print "%d out of %d" % (s, total)
 	return s/float(total)
 
@@ -188,9 +200,15 @@ def run_test (input_file):
 	return [fMRI_score, MEG_score, length]
 
 def main():
-	scores = run_test(open(sys.argv[1], 'r'))
-	print "There are %d words found in BrainBench from the input" % scores[2]
-	print "The fMRI score is %f" % scores[0]
+	input_file_list =['Global_context.txt','Skip_gram_corrected.txt','RNN.txt','Cross_lingual.txt','glove.6B.300d.txt','Non-Distributional.txt']
+	for z in range(6):
+		print "Running test for:  " + str(input_file_list[z])
+		input_vec = word_vec_in +str(input_file_list[z])
+		input_file= open(input_vec,'r')
+		#scores = run_test(open(sys.argv[1], 'r'))
+		scores = run_test(input_file)
+		print "There are %d words found in BrainBench from the input" % scores[2]
+		print "The fMRI score is %f" % scores[0]
 	#print "The MEG score is %f" % scores[1]
 
 if __name__ == "__main__":

@@ -9,8 +9,8 @@ import sys
 
 #File locations :
 
-outfile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/'
-infile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/MRI_VoxelDone/'
+outfile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/temp1/'
+infile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/temp/'
 subjs1 = ['P1','P2','P3','P4','P5','P6','P7','P8','P9']
 length = 60
 
@@ -23,9 +23,6 @@ for i in range(9):
 
 	#TEMPORARY CODE ADDED HERE TO SORT THE BRAIN DATA 
 	"""
-	data_sorted = np.empty(shape=[30, Brain_data.shape[1]])	
-	ind = [4,15,17,66,29,19,60,45,13,37,23,5,40,42,11,46,50,12,51,64,8,26,44,62,61,33,67,38,69,63]
-	print len(ind)
 	
 	ind =[0,3,1,4,6,7,14,15,16,17,18,66,52,43,29,19,60,21,45,\
 	13,37,27,28,30,32,23,24,25,35,5,34,36,54,39,40,41,42,11,46,31,50,12,20,49,51,\

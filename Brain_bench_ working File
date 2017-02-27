@@ -94,6 +94,8 @@ RNN
 0.599153886832
 There are 62 words found in BrainBench from the input
 The fMRI score is 0.614548, old data score 0.62
+
+0.555926
 ===============================================================================
 
 Global Context
@@ -145,13 +147,50 @@ Skip Gram
 0.58648018648
 There are 66 words found in BrainBench from the input
 The fMRI score is 0.580316, old data 0.65
+Voxels at 0.03 and regress done ! 
+
+The fMRI score is 0.561357
+
+The fMRI score is 0.569697
+The fMRI score is 0.581404 -0.7
+
+The fMRI score is 0.573530
+
+56.something
 =====================================================================================
 
 
 
 Anatomical mapping data with Datascience data
-Mail Andrew for Voxel Coords - Tuesday
 brain areas - Voxel Mapping - Tuesday
 word types - concrete n discrete - Friday
 open Fmri
+
+
+
+fastText
+
+COMMENT	FASTTEXT CREATED BY GENIUS MIKOLOV WHO MADE WORD2VEC. LEARNING IS VERY FAST! IN ORDER TO CONSIDER MORPHEMES, EACH WORD IS REPRESENTED BY THE CHARACTER NGRAM AND VECTOR EXPRESSIONS OF THEM IS LEARNED.
+Year	2016
+URL	https://github.com/icoxfog417/fastTextJapaneseTutorial
+* it includes only in Japanese…
+
+Other Pre-trained Vectors
+Dependency-Based Word Embeddings
+
+COMMENT	WORD EMBEDDINGS BY LEVY ET AL. BY LEARNING DEPENDENCY-BASED CONTEXTS, IT BECAME STRONG AGAINST SYNTACTIC SIMILARITY. IT MIGHT BE GOOD IF YOU WANT TO USE IT FOR SYNTACTIC SIMILARITY.
+Year	2014
+URL	https://levyomer.wordpress.com/2014/04/25/dependency-based-word-embeddings/
+Meta-Embeddings
+
+COMMENT	META-EMBEDDINGS PUBLISHED IN ACL 2016. BY COMBINING DIFFERENT PUBLIC EMBEDDING SETS, BETTER VECTORS(META-EMBEDDINGS) ARE GENERATED.
+Year	2016
+URL	http://cistern.cis.lmu.de/meta-emb/
+LexVec
+
+COMMENT	LEXVEC ALSO PUBLISHED IN ACL 2016. IN WORD SIMILARITY TASK, SOME RESULTS EXCEED WORD2VEC.
+Year	2016
+URL		
+
+https://github.com/alexandres/lexvec
 
