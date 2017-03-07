@@ -24,6 +24,7 @@ for i = 1:9
     end;
     %data1([29,113,146,181,288,353,21],1:10);
     %data(1:7,1:10)
+    size(data)
     A1=permute(reshape(data,voxels1,rep1,[]),[1 3 2]);
     size(A1)
     voxel_sel_A1 = voxel_selection(A1);

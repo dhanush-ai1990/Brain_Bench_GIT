@@ -4,7 +4,7 @@ dir1 = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/MRI_Ra
 dir2 ='/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/MRI_Raw/';
 %The word list is not present in Data Science Raw files. Reading an
 %alternate file to get the words
-tc = load(sprintf('%stemp.mat',dir));
+tc = load(sprintf('%sLabels.mat',dir));
 words = tc.words;
 labels = tc.labels;
 A_percept = load(sprintf('%s20q_A_percept.mat',dir));
@@ -28,5 +28,5 @@ for i = 1:3
     data = zscore(data(:,:));
     data(1:5,1:5)
     size(data)
-    %save(sprintf('%s%s_raw.mat',dir2,subj),'data','-v7.3');
+    save(sprintf('%s%s_raw.mat',dir2,subj),'data','-v7.3');
 end

@@ -27,45 +27,18 @@ for i = 1:9
             temp =cat(1,temp,(percept(z,:)));
         end;   
     end;
-    %p = zscore(temp);
-    p =zscore(percept);
-    rep1 = 6;
-    [words1, voxels1] = size(data1);
-    c=1;
-    data = zeros(size(data1));
-    %Arrange the words as per the labels
-    for j = 1:60
-        for k=1:360
-            if j==labels(k)
-                data(c,:) = data1(k,:);
-                c = c+1;
-            end;
-        end;
-    end;
-    %data1([29,113,146,181,288,353,21],1:10);
-    %data(1:7,1:10)
+    p = zscore(temp);
+    data = data1;
+    data = zscore(data(:,:));
+    [weightMatrix, r] = learn_text_from_fmri_kernel_sep_lambda_no_bias( p,data, 1);
+    fprintf('%.g\n',median(r))
+    p_1 = p;
+    p_1(:,end+1)=1;
+    x_fit = p_1*weightMatrix;
+    data = data - x_fit;
+    data = reshape(data,size(data1));
     size(data)
-    A1=permute(reshape(data,voxels1,rep1,[]),[1 3 2]);
-    size(A1)
-    voxel_sel_A1 = voxel_selection(A1);
-    size(voxel_sel_A1);
-% Sorting the voxel scores in descending order
-    [Asorted,AbsoluteIndices_A] = sort(voxel_sel_A1(:),'descend');
-% Selecting top 10% voxel
-    toprated_A = voxels1 * 0.03;
-    A_Indices_selected = AbsoluteIndices_A(1:toprated_A,1);
-
-% Removing low scored voxels from data
-    voxel_selected_A = [];
-%voxel_selected_B = [];
-
-    for index = 1:size(A_Indices_selected,1)
-        voxel_selected_A =cat(2,voxel_selected_A,data1(:,A_Indices_selected(index,1)));
-    end;
-
-    size(voxel_selected_A)
-    data = voxel_selected_A;
-    A_avg = [];
+    A_avg =[];
     for j = 1:60
         A_avg(j,:) = squeeze(mean(data(labels == j,:)));
     end;

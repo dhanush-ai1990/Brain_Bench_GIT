@@ -8,7 +8,7 @@ import numpy as np
 from scipy.stats.stats import pearsonr
 import sys
 
-infile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/MRI_VoxelDone/'
+infile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/temp/'
 infile1='/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/MRI_Raw/'
 subjs1 = ['P1','P2','P3','P4','P5','P6','P7','P8','P9']
 outfile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/Numpy_regions/'
@@ -21,6 +21,7 @@ for i in range(9):
 	#print " "
 	file_in = infile + str(subjs1[i]) +'_voxselected.mat'
 	S1 = h5py.File(file_in)
+	print S1
 	Brain_data = S1['data'][()].transpose()
 	# Load the Brain Region mapping
 	file_in = infile1  +'Brain_region_' +  str(subjs1[i]) +'.txt'
@@ -42,21 +43,24 @@ for i in range(9):
 	keys = region_dict.keys()
 	keys.sort()
 
+
 	for key in keys:
 		region_dict[key] = np.asarray(region_dict[key]).T
-		print "   " + str(key) + " : " +str(region_dict[key].shape[1])
+		#print "   " + str(key) + " : " +str(region_dict[key].shape[1])
 		if key not in avg_region_count:
 			avg_region_count[key] =0
 		avg_region_count[key]+=region_dict[key].shape[1]
 
-
+		#print region_dict[key].shape
 	save_file = infile  + str(subjs1[i]) +'_RegionMapped.mat'
 	sio.savemat(save_file, {'Mapped_Region': region_dict})
-"""
-	j =0
+
+	j =1
 	for key in region_dict:
-		print j
+		print "Processing region " + str(j) +" out of 114 of participant " + str(i+1)
 		j+=1
+		Brain_data =region_dict[key]
+		print Brain_data.shape
 		input_mat = np.empty((length, length))
 		input_mat.fill(0)
 		for word1 in range (0,length):
@@ -69,7 +73,7 @@ for i in range(9):
 	# print (input_mat)	
 		print input_mat.shape
 		np.save(outfile+str(subjs1[i])+ str('_') + str(key)+'_MRI.npy', input_mat)	
-"""
+
 print ("===========================================================")
 print " AVG VOXELS PER REGION"
 print " "
@@ -83,3 +87,4 @@ for key in keys:
 	f.write(temp+'\n')
 
 f.close()
+

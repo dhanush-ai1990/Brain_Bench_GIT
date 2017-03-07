@@ -3,6 +3,7 @@ import h5py
 import numpy as np
 from scipy.stats.stats import pearsonr
 import sys
+import pickle as pkl
 
 
 infile= "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/Numpy_regions/"
@@ -144,7 +145,7 @@ subj =f.readline()
 region_list = [line.strip() for line in f if line.strip()]
 region_list=list(set(region_list))
 region_list.sort()
-input_file_list =['Global_context.txt','Skip_gram_corrected.txt','RNN.txt','Cross_lingual.txt']
+input_file_list =['Global_context.txt','Skip_gram_corrected.txt','RNN.txt','Cross_lingual.txt','glove.6B.300d.txt','Non-Distributional.txt']
 print len(region_list)
 
 # Data Collection.
@@ -162,7 +163,7 @@ for line in f:
 
 region_scores ={}
 word2vec_scores ={}
-for z in range(5):
+for z in range(6):
 	print "Running test for:  " + str(input_file_list[z])
 	input_vec = word_vec_in +str(input_file_list[z])
 	input_file= open(input_vec,'r')
@@ -173,19 +174,20 @@ for z in range(5):
 	word2vec_scores[input_file_list[z]] ={}
 
 	for region in region_list:
+		#print region + ": " + str(avg_region_count[region])
 		if ((avg_region_count[region]) < 100):
-			pass
+			continue
 		word2vec_scores[input_file_list[z]][region] = []
 		# Call for all 9 participants
+		#print region
 		for i in range(9):
 			P1_MAT= infile +subjs1[i] + "_" + str(region) + "_MRI.npy"
 			fMRI_score = get_score(input_mat,  P1_MAT, mask, length)
 			word2vec_scores[input_file_list[z]][region].append(fMRI_score)
 		print sum(word2vec_scores[input_file_list[z]][region])/9
-for region in region_list:
-	print " ======================================"
-	print "Running test for Region:  " + str(region)
 
+save_pickle ="/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/region_score_fmri.p"
+pkl.dump(word2vec_scores, open(save_pickle, "wb" ) )
 
 
 

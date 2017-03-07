@@ -8,9 +8,9 @@ numVoxels = size(data,1);
 voxelScores = zeros(numVoxels,1);
 numVoxels
 for v = 1:numVoxels
-    if rem(v,10000) == 1,
-        fprintf('%s\tvoxel %i\n',datestr(now),v);
-    end
+    %if rem(v,10000) == 1,
+    %   fprintf('%s\tvoxel %i\n',datestr(now),v);
+    %end
     % voxelStabilityMatrix needs to be numPresentations by numWords
     voxelStabilityMatrix = squeeze(data(v,:,:))';
     
