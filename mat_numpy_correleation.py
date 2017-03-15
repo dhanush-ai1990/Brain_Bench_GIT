@@ -4,13 +4,20 @@ import numpy as np
 from scipy.stats.stats import pearsonr
 import sys
 
-#File locations :
+#For data science file.
 
 outfile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/'
-infile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/MRI_VoxelDone//'
+infile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/MRI_VoxelDone/'
 subjs1 = ['P1','P2','P3','P4','P5','P6','P7','P8','P9']
 length = 60
 
+# For Anderson Data
+"""
+outfile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/'
+infile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/MRI_VoxelDone/'
+subjs1 = ['P1','P2','P3','P4','P5','P6','P7','P8','P9']
+length = 70
+"""
 """
 def getindex(ind,k):
 	for i in range(30):
@@ -23,10 +30,10 @@ for i in range(9):
 	S1 = h5py.File(file_in)
 	#Brain_data = S1['data'][()].transpose()
 	Brain_data = S1['data'][()].transpose()
-	
-
-	#TEMPORARY CODE ADDED HERE TO SORT THE BRAIN DATA 
+	print Brain_data.shape
 	"""
+	#TEMPORARY CODE ADDED HERE TO SORT THE BRAIN DATA 
+	
 	data_sorted = np.empty(shape=[70, Brain_data.shape[1]])	
 	ind =[0,3,1,4,6,7,14,15,16,17,18,66,52,43,29,19,60,21,45,\
 	13,37,27,28,30,32,23,24,25,35,5,34,36,54,39,40,41,42,11,46,31,50,12,20,49,51,\
@@ -38,8 +45,8 @@ for i in range(9):
 		z+=1
 	Brain_data = data_sorted
 	Brain_data.shape
-	
-
+	"""
+	"""
 	#for concrete only words#
 	
 	data_sorted = np.empty(shape=[30, Brain_data.shape[1]])

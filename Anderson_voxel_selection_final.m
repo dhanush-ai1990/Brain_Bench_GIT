@@ -9,24 +9,34 @@ for i = 1:9
     sc = load(sprintf('%s%s_raw_notavrg_percept_residual_test.mat',dir1,subj));
     data1 = sc.data;
     words = sc.word;
-    size(words)
+    %size(words)
     rep = 5; % Repetition of Words in Anderson Data
     [words1, voxels1] = size(data1);
-    A = data1;
-    size(A)
-    A1=permute(reshape(A,voxels1,rep,[]),[1 3 2]); % Changing to Voxel x Words x Repetition
+    data = data1;
+    size(data)
+   data = data';
+    % Permute for Voxel * word * repetition format
+   A1 = [];
+   A1 = zeros(voxels1,70,5);
+   for n = 1 :voxels1
+       m = 1;
+       for o = 1:70
+         A1(n,o,:) = data(n,m:m+4);  
+         m = m+5;
+       end;
+   end;
     size(A1)
     voxel_sel_A1 = voxel_selection(A1);% Performing Voxel selection
     size(voxel_sel_A1);
     [Asorted,AbsoluteIndices_A] = sort(voxel_sel_A1(:),'descend');
-    toprated_A = voxels1 * .17;
+    toprated_A = voxels1 * .03;
     A_Indices_selected = AbsoluteIndices_A(1:toprated_A,1);
 
 % Removing low scored voxels from data
     voxel_selected_A = [];
 
     for index = 1:size(A_Indices_selected,1)
-        voxel_selected_A =cat(2,voxel_selected_A,A(:,A_Indices_selected(index,1)));
+        voxel_selected_A =cat(2,voxel_selected_A,data1(:,A_Indices_selected(index,1)));
     end;
     size(voxel_selected_A)
  

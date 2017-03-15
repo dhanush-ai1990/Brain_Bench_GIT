@@ -6,7 +6,7 @@ function [voxelScores] = voxel_selection(data)
 numVoxels = size(data,1);
 
 voxelScores = zeros(numVoxels,1);
-numVoxels
+
 for v = 1:numVoxels
     %if rem(v,10000) == 1,
     %   fprintf('%s\tvoxel %i\n',datestr(now),v);
@@ -18,9 +18,7 @@ for v = 1:numVoxels
     % stability matrix. 'corr' will do this for us on the columns, so
     % we just transpose.
     corrMatrix = corr(voxelStabilityMatrix');
-    if v < 5
-        corrMatrix;
-    end
+
     % now we take the mean over
     voxelScores(v) = mean(corrMatrix(triu(corrMatrix,1) ~= 0));
 end

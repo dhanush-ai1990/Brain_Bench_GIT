@@ -20,13 +20,14 @@ for i = 1:9
     data = zscore(data(:,:));
     % do Mean normalisation for regressed features
     p = zscore(A_percept);
-    %[weightMatrix, r] = learn_text_from_fmri_kernel_sep_lambda_no_bias( p,data, 1);
-    %fprintf('%.g\n',median(r))
-    %p_1 = p;
-    %p_1(:,end+1)=1;
-    %x_fit = p_1*weightMatrix;
-    %data = data - x_fit;
-    %data = reshape(data,size(databck));
-    data = databck;
+    [weightMatrix, r] = learn_text_from_fmri_kernel_sep_lambda_no_bias( p,data, 1);
+    fprintf('%.g\n',median(r))
+    p_1 = p;
+    p_1(:,end+1)=1;
+    x_fit = p_1*weightMatrix;
+    data = data - x_fit;
+    data = reshape(data,size(databck));
+    size(data)
+    %data = databck;
     save(sprintf('%s%s_raw_notavrg_percept_residual_test.mat',dir2,subj),'data','word','-v7.3');
 end;

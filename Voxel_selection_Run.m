@@ -25,10 +25,20 @@ for i = 1:9
     %data1([29,113,146,181,288,353,21],1:10);
     %data(1:7,1:10)
     size(data)
-    A1=permute(reshape(data,voxels1,rep1,[]),[1 3 2]);
+    data = data';
+    % Permute for Voxel * word * repetition format
+   A1 = [];
+   A1 = zeros(voxels1,60,6);
+   for n = 1 :voxels1
+       m = 1;
+       for o = 1:60
+         A1(n,o,:) = data(n,m:m+5);  
+         m = m+6;
+       end;
+   end;
     size(A1)
     voxel_sel_A1 = voxel_selection(A1);
-    size(voxel_sel_A1);
+   voxel_sel_A1(1:5)
 % Sorting the voxel scores in descending order
     [Asorted,AbsoluteIndices_A] = sort(voxel_sel_A1(:),'descend');
 % Selecting top 10% voxel

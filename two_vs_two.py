@@ -14,17 +14,8 @@ P6_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewN
 P7_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P7_MRI.npy"
 P8_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P8_MRI.npy"
 P9_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P9_MRI.npy"
-"""
-P1_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/temp1/P1_MRI.npy"
-P2_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/temp1/P2_MRI.npy"
-P3_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/temp1/P3_MRI.npy"
-P4_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/temp1/P4_MRI.npy"
-P5_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/temp1/P5_MRI.npy"
-P6_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/temp1/P6_MRI.npy"
-P7_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/temp1/P7_MRI.npy"
-P8_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/temp1/P8_MRI.npy"
-P9_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/temp1/P9_MRI.npy"
 
+"""
 P1_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P1_MRI.npy"
 P2_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P2_MRI.npy"
 P3_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P3_MRI.npy"
@@ -34,7 +25,8 @@ P6_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/New
 P7_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P7_MRI.npy"
 P8_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P8_MRI.npy"
 P9_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P9_MRI.npy"
-
+"""
+"""
 A_MAT = "./corr_mats/MEG/a.npy"
 B_MAT = "./corr_mats/MEG/b.npy"
 C_MAT = "./corr_mats/MEG/c.npy"
@@ -63,13 +55,16 @@ def get_matrix_and_mask(vector_file):
 	input_words = {}
 	# filter out words from the input that is not in the dictionary
 	count = 0
+	added_word = {}
 	for index, line in enumerate(vector_file):
 		tokens = line.strip().split()
 		word = tokens.pop(0)
 		count+=1;
 		word = word.lower()										
-		if word in dictionary: 						
-			input_words[word] = (map(float, tokens))
+		if word in dictionary: 
+			if word not in added_word:						
+				input_words[word] = (map(float, tokens))
+				added_word[word] = 0
 	#print len(dictionary)
 	# find words that is in dictionary but not in the input, record their indexs for making a mask
 	for i, line in enumerate(open(DICTIONARY, 'r')):
@@ -203,7 +198,7 @@ def run_test (input_file):
 
 def main():
 	#input_file_list =['Global_context.txt','Skip_gram_corrected.txt','RNN.txt','Cross_lingual.txt','glove.6B.300d.txt','Non-Distributional.txt']
-	input_file_list =['Global_context.txt','Skipgram.txt','RNN.txt','Cross_lingual.txt','glove.6B.300d.txt','Non-Distributional.txt']
+	input_file_list =['Global_context.txt','Skip_gram_corrected.txt','RNN.txt','Cross_lingual.txt','glove.6B.300d.txt','Non-Distributional.txt']
 	for z in range(6):
 		print "Running test for:  " + str(input_file_list[z])
 		input_vec = word_vec_in +str(input_file_list[z])
