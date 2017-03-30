@@ -2,7 +2,7 @@ dir  = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/';
 dir2 = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/MRI_VoxelDone/';
 dir1 ='/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/MRI_RegressDone/';
 subjs1 = {'P1','P2','P3','P4','P5','P6','P7','P8','P9'};
-for i = 1:9
+for i = 1:1
     fprintf('%i\n',i);
     subj = subjs1{i};
     st = load(sprintf('%s%s_raw_notavrg_percept_residual_test.mat',dir1,subj));
@@ -26,6 +26,7 @@ for i = 1:9
     %data(1:7,1:10)
     size(data)
     data = data';
+    data = zscore(data,0,2);
     % Permute for Voxel * word * repetition format
    A1 = [];
    A1 = zeros(voxels1,60,6);
@@ -38,13 +39,15 @@ for i = 1:9
    end;
     size(A1)
     voxel_sel_A1 = voxel_selection(A1);
+    %size(voxel_sel_A1)
+    %voxel_sel_A1 = zscore(voxel_sel_A1);
    voxel_sel_A1(1:5)
 % Sorting the voxel scores in descending order
     [Asorted,AbsoluteIndices_A] = sort(voxel_sel_A1(:),'descend');
 % Selecting top 10% voxel
     toprated_A = voxels1 * 0.03;
     A_Indices_selected = AbsoluteIndices_A(1:toprated_A,1);
-
+    %Asorted(1:5)
 % Removing low scored voxels from data
     voxel_selected_A = [];
 %voxel_selected_B = [];

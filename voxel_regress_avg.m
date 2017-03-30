@@ -75,7 +75,7 @@ AbsoluteIndices_A=0;
     AbsoluteIndices_A(1:10)
 % Selecting top 10% voxel
     voxels = size(data,2);
-    toprated_A = voxels * 0.14;
+    toprated_A = voxels * 1;
     A_Indices_selected = AbsoluteIndices_A(1:toprated_A,1);
 
 % Removing low scored voxels from data

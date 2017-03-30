@@ -29,7 +29,7 @@ for i = 1:9
     voxel_sel_A1 = voxel_selection(A1);% Performing Voxel selection
     size(voxel_sel_A1);
     [Asorted,AbsoluteIndices_A] = sort(voxel_sel_A1(:),'descend');
-    toprated_A = voxels1 * .03;
+    toprated_A = voxels1 * 0.10;
     A_Indices_selected = AbsoluteIndices_A(1:toprated_A,1);
 
 % Removing low scored voxels from data
