@@ -1,5 +1,6 @@
 dir  = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/';
 dir2 = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/MRI_VoxelDone/';
+dir2 = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/MRI_VoxelDone/';
 dir1 ='/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/MRI_RegressDone/';
 subjs1 = {'P1','P2','P3','P4','P5','P6','P7','P8','P9'};
 
@@ -29,9 +30,9 @@ for i = 1:9
     voxel_sel_A1 = voxel_selection(A1);% Performing Voxel selection
     size(voxel_sel_A1);
     [Asorted,AbsoluteIndices_A] = sort(voxel_sel_A1(:),'descend');
-    toprated_A = voxels1 * 0.10;
+    toprated_A = voxels1 * 0.02;
     A_Indices_selected = AbsoluteIndices_A(1:toprated_A,1);
-
+    Asorted(1:10)
 % Removing low scored voxels from data
     voxel_selected_A = [];
 

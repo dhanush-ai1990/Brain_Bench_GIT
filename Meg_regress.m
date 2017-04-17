@@ -7,17 +7,23 @@ dir1 = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Meg_data/MEG_Raw/';
 dir2 ='/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Meg_data/MEG_RegressDone/';
 subjs = {'A','B','C','D','E','F','G','I','J'};
 
-A_percept = load(sprintf('%s20q_A_percept.mat',dir));
+A_percept = load(sprintf('%s20q_A_percept.mat',dir)); 
 num_words = 60;
-for i = 1:9,
+for i = 1:1,
     subj = subjs{i};
     fprintf('%i %s\n',i,datestr(now));
     sc = load(sprintf('%s%s_sensors_SSSt_SSP_LP50_DS200_tc_noBlinksSSP.mat',dir1,subj));
     words = sc.words;
     time = sc.time;
-    sc.data = permute(sc.data,[2 1 3]);
+    size(time)
+    size(sc.data)
+    data = sc.data;
+    
     labels = sc.labels;
+    size(data)
+    sc.data = permute(data,[2 1 3]);
     data = zscore(sc.data(:,:));
+    size(data)
     
     p = zscore(A_percept.A_percept(labels,:));
     [weightMatrix, r] = learn_text_from_fmri_kernel_sep_lambda_no_bias( p,data, 1);
@@ -35,7 +41,7 @@ for i = 1:9,
     end
     avrg_win = time >=-0.2 & time <=0;
     
-    mag_data = mag_data - repmat(mean(mag_data(:,:,avrg_win),3),[1,1,time_len]);
+    mag_data = mag_data - repmat(mean(mag_data(:,:,avrg_win),3),[1,1,length(time)]);
     
     labels = 1:num_words;
     data = mag_data;

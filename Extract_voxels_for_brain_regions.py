@@ -8,8 +8,8 @@ import numpy as np
 from scipy.stats.stats import pearsonr
 import sys
 
-infile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/temp/'
-infile1='/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/MRI_Raw/'
+infile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/Numpy_regions/'
+infile1='/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/Numpy_regions/'
 subjs1 = ['P1','P2','P3','P4','P5','P6','P7','P8','P9']
 outfile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/Numpy_regions/'
 length = 60
@@ -21,7 +21,7 @@ for i in range(9):
 	#print " "
 	file_in = infile + str(subjs1[i]) +'_voxselected.mat'
 	S1 = h5py.File(file_in)
-	print S1
+	#print S1
 	Brain_data = S1['data'][()].transpose()
 	# Load the Brain Region mapping
 	file_in = infile1  +'Brain_region_' +  str(subjs1[i]) +'.txt'
@@ -52,10 +52,11 @@ for i in range(9):
 		avg_region_count[key]+=region_dict[key].shape[1]
 
 		#print region_dict[key].shape
-	save_file = infile  + str(subjs1[i]) +'_RegionMapped.mat'
-	sio.savemat(save_file, {'Mapped_Region': region_dict})
+	#save_file = infile  + str(subjs1[i]) +'_RegionMapped.mat'
+	#sio.savemat(save_file, {'Mapped_Region': region_dict})
 
 	j =1
+	print len(region_dict)
 	for key in region_dict:
 		print "Processing region " + str(j) +" out of 114 of participant " + str(i+1)
 		j+=1

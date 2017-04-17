@@ -21,7 +21,7 @@ expt.subject = 'P1';
     coord = meta.colToCoord(cols,:);
     mni = get_mni_coordinates(coord);
     aal = get_aal_labels(mni);
-    fid = fopen('/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/MRI_Raw/Brain_region_P9.txt','wt');
+    fid = fopen('/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/Numpy_regions/Brain_region_P9.txt','wt');
     fprintf(fid, 'P9');
         fprintf(fid, '\n');
     for z = 1:length(aal)
