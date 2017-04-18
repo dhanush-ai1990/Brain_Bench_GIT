@@ -5,18 +5,29 @@ from scipy.stats.stats import pearsonr
 import sys
 
 #For data science file.
-"""
-outfile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/'
-infile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/MRI_VoxelDone/'
-subjs1 = ['P1','P2','P3','P4','P5','P6','P7','P8','P9']
-length = 60
-"""
 
+outfile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Meg_data/NewNumpy/'
+#infile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/MRI_VoxelDone/'
+infile ='/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Meg_data/MEG_VoxelDone/'
+#subjs1 = ['P1','P2','P3','P4','P5','P6','P7','P8','P9']
+subjs1 = ['A','B','C','D','E','F','G','I','J'];
+length = 60
+
+"""
 # For Anderson Data
 outfile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/'
 infile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/MRI_VoxelDone/'
 subjs1 = ['P1','P2','P3','P4','P5','P6','P7','P8','P9']
-length = 40
+length = 70
+"""
+
+"""
+# For EEG data
+outfile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/EEG_data/NewNumpy/'
+infile ='/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/EEG_data/EEG_VoxelDone/'
+subjs1 = ['A','B','C','D','E','F','G'];
+length = 60
+"""
 def getindex(ind,k):
 	for i in range(30):
 		if ind[i] ==k:
@@ -30,7 +41,7 @@ for i in range(9):
 	Brain_data = S1['data'][()].transpose()
 	print Brain_data.shape
 	
-	#TEMPORARY CODE ADDED HERE TO SORT THE BRAIN DATA 
+	#TEMPORARY CODE ADDED HERE TO SORT THE BRAIN DATA FOR ITALIAN FMRI
 	"""
 	data_sorted = np.empty(shape=[70, Brain_data.shape[1]])	
 	ind =[0,3,1,4,6,7,14,15,16,17,18,66,52,43,29,19,60,21,45,\
@@ -57,7 +68,7 @@ for i in range(9):
 	Brain_data = data_sorted
 	print Brain_data.shape
 	"""
-
+	"""
 	# for Abstract words for Anderson
 	
 	data_sorted = np.empty(shape=[40, Brain_data.shape[1]])
@@ -71,7 +82,21 @@ for i in range(9):
 			z+=1
 	Brain_data = data_sorted
 	print Brain_data.shape
-	
+	"""
+
+	"""
+	#TEMPORARY CODE ADDED HERE TO SORT THE BRAIN DATA FOR EEG Data
+	data_sorted = np.empty(shape=[60, Brain_data.shape[1]])	
+	ind =[31,1,2,32,3,4,5,6,7,33,8,9,34,35,10,11,36,12,37,38,13,14,39,40,15,16,17,18,19,20,\
+	21,52,22,23,24,41,25,42,43,26,44,45,46,47,48,49,50,51,27,53,54,55,56,57,58,28,59,29,60,30]
+	print len(ind)
+	z = 0
+	for k in range(60):
+		data_sorted[z,:]= Brain_data[ind[k]-1]
+		z+=1
+	Brain_data = data_sorted
+	Brain_data.shape
+	"""
 	# Pearson correlation
 	input_mat = np.empty((length, length))		
 	input_mat.fill(0)						# initialize the mattrix made by input word vector
@@ -86,7 +111,7 @@ for i in range(9):
 			input_mat[word1][word2] = pearsonr(vector1, vector2)[0]
 	# print (input_mat)	
 	print input_mat.shape
-	np.save(outfile+str(subjs1[i])+'_MRIA.npy', input_mat)
+	np.save(outfile+str(subjs1[i])+'_MEG.npy', input_mat)
 
 
 

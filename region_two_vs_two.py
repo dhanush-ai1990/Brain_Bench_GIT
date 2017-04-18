@@ -179,12 +179,14 @@ for z in range(6):
 			continue
 		word2vec_scores[input_file_list[z]][region] = []
 		# Call for all 9 participants
-		#print region
 		for i in range(9):
 			P1_MAT= infile +subjs1[i] + "_" + str(region) + "_MRI.npy"
-			fMRI_score = get_score(input_mat,  P1_MAT, mask, length)
-			word2vec_scores[input_file_list[z]][region].append(fMRI_score)
-		print sum(word2vec_scores[input_file_list[z]][region])/9
+			try:
+				fMRI_score = get_score(input_mat,  P1_MAT, mask, length)
+				word2vec_scores[input_file_list[z]][region].append(fMRI_score)
+			except IOError:
+				print "No voxels for region: " + str(region) + "and participant: " + str(i)	
+		#print sum(word2vec_scores[input_file_list[z]][region])/9
 
 save_pickle ="/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/region_score_fmri.p"
 pkl.dump(word2vec_scores, open(save_pickle, "wb" ) )

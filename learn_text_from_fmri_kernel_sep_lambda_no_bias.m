@@ -11,12 +11,12 @@ trainingTargets = trainingTargets - repmat(b0,size(trainingTargets,1),1);
 numTargetDimensions = size(trainingTargets,2);
 numExamples = size(trainingData,1);
 
-% params = [.0000001 .000001 .00001 .0001 .001 .01 .1 .5 1 5 10 50 100 500 1000 10000 20000 50000 ...
-%     100000 500000 1000000 5000000 10000000];
+params = [.0000001 .000001 .00001 .0001 .001 .01 .1 .5 1 5 10 50 100 500 1000 10000 20000 50000 ...
+     100000 500000 1000000 5000000 10000000];
 %params = [.00001 .0001 .001 .01 .1  1 10 100 1000 10000];
 %params = [100000 500000 1000000 5000000 10000000];
 %params = [.00001 .0001 .001 .01 .1  1 ];
-params = [.01 .001 ];
+
 n_params = length(params);
 n_targs = size(trainingTargets,2);
 

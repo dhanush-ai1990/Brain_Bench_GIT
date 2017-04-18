@@ -15,7 +15,7 @@ P7_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewN
 P8_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P8_MRI.npy"
 P9_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P9_MRI.npy"
 """
-
+"""
 P1_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P1_MRIA.npy"
 P2_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P2_MRIA.npy"
 P3_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P3_MRIA.npy"
@@ -25,24 +25,38 @@ P6_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/New
 P7_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P7_MRIA.npy"
 P8_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P8_MRIA.npy"
 P9_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P9_MRIA.npy"
+"""
+
+A_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Meg_data/NewNumpy/A_MEG.npy"
+B_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Meg_data/NewNumpy/B_MEG.npy"
+C_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Meg_data/NewNumpy/C_MEG.npy"
+D_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Meg_data/NewNumpy/D_MEG.npy"
+E_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Meg_data/NewNumpy/E_MEG.npy"
+F_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Meg_data/NewNumpy/F_MEG.npy"
+G_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Meg_data/NewNumpy/G_MEG.npy"
+I_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Meg_data/NewNumpy/I_MEG.npy"
+J_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Meg_data/NewNumpy/J_MEG.npy"
 
 """
-A_MAT = "./corr_mats/MEG/a.npy"
-B_MAT = "./corr_mats/MEG/b.npy"
-C_MAT = "./corr_mats/MEG/c.npy"
-D_MAT = "./corr_mats/MEG/d.npy"
-E_MAT = "./corr_mats/MEG/e.npy"
-F_MAT = "./corr_mats/MEG/f.npy"
-G_MAT = "./corr_mats/MEG/g.npy"
-I_MAT = "./corr_mats/MEG/i.npy"
-J_MAT = "./corr_mats/MEG/j.npy"
+#EEG DATA
+A_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/EEG_data/NewNumpy/A_EEG.npy"
+B_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/EEG_data/NewNumpy/B_EEG.npy"
+C_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/EEG_data/NewNumpy/C_EEG.npy"
+D_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/EEG_data/NewNumpy/D_EEG.npy"
+E_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/EEG_data/NewNumpy/E_EEG.npy"
+F_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/EEG_data/NewNumpy/F_EEG.npy"
+G_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/EEG_data/NewNumpy/G_EEG.npy"
 """
-#DICTIONARY ="/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/Dictionary/dictionary_org.txt"
+
+DICTIONARY ="/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/Dictionary/dictionary_org.txt"
 #DICTIONARY = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/Dictionary/Anderson_words.txt"
 #DICTIONARY = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/Dictionary/Anderson_italian.txt"
-DICTIONARY = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/Dictionary/A.txt"
+#DICTIONARY = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/Dictionary/A.txt"
+#DICTIONARY = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/EEG_Data/Dictionary/EEG_dictionary.txt'
+
+
 word_vec_in ="/Users/Dhanush/Desktop/Projects/Brain_Bench/Word_Vectors/"
-size_words = 40
+size_words = 60
 def get_matrix_and_mask(vector_file):
 	unavailable = []	# list of indexes of word in brain data that did not appear in the input
 	word_vector = []	# input word vector
@@ -184,17 +198,28 @@ def get_MEG_average(input_mat, mask, length):
 	MEG_score += get_score(input_mat, J_MAT, mask, length)
 	return MEG_score/9.0
 
+def get_EEG_average(input_mat, mask, length):
+	EEG_score = get_score(input_mat, A_MAT, mask, length)
+	EEG_score += get_score(input_mat, B_MAT, mask, length)
+	EEG_score += get_score(input_mat, C_MAT, mask, length)
+	EEG_score += get_score(input_mat, D_MAT, mask, length)
+	EEG_score += get_score(input_mat, E_MAT, mask, length)
+	EEG_score += get_score(input_mat, F_MAT, mask, length)
+	EEG_score += get_score(input_mat, G_MAT, mask, length)
+	return EEG_score/7.0
+
 def run_test (input_file):
 	obj = get_matrix_and_mask(input_file)
 	input_mat = obj['input_mat']
 	mask = obj['mask']
 	length = obj['length']
 	fMRI_score = 0
-	fMRI_score = get_fMRI_average(input_mat, mask, length)
+	#fMRI_score = get_fMRI_average(input_mat, mask, length)
 	MEG_score = 0
-	#MEG_score = get_MEG_average(input_mat, mask, length)
-
-	return [fMRI_score, MEG_score, length]
+	MEG_score = get_MEG_average(input_mat, mask, length)
+	EEG_score = 0
+	#EEG_score = get_EEG_average(input_mat, mask, length)
+	return [fMRI_score, MEG_score, length,EEG_score]
 
 def main():
 	#input_file_list =['Global_context.txt','Skip_gram_corrected.txt','RNN.txt','Cross_lingual.txt','glove.6B.300d.txt','Non-Distributional.txt']
@@ -207,8 +232,9 @@ def main():
 		#scores = run_test(open(sys.argv[1], 'r'))
 		scores = run_test(input_file)
 		print "There are %d words found in BrainBench from the input" % scores[2]
-		print "The fMRI score is %f" % scores[0]
-	#print "The MEG score is %f" % scores[1]
+		#print "The fMRI score is %f" % scores[0]
+		print "The MEG score is %f" % scores[1]
+		#print "The EEG score is %f" % scores[3]
 
 if __name__ == "__main__":
     main()

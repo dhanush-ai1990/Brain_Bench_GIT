@@ -25,12 +25,14 @@ for i = 1:9
     %Change A_percept for six times for a 360* 11 matrix
     percept = A_percept.A_percept;
     temp =[];
+    size(percept)
     for z = 1:60
         for y = 1:6
             temp =cat(1,temp,(percept(z,:)));
         end;   
     end;
     p = zscore(temp);
+    size(p)
     [weightMatrix, r] = learn_text_from_fmri_kernel_sep_lambda_no_bias( p,data, 1);
     fprintf('%.g\n',median(r))
     p_1 = p;
@@ -40,6 +42,6 @@ for i = 1:9
     data = reshape(data,size(data1));
     size(data)
     data = data1;
-    save(sprintf('%s%s_raw_notavrg_percept_residual_test.mat',dir2,subj),'data','words','labels','-v7.3');
+    %save(sprintf('%s%s_raw_notavrg_percept_residual_test.mat',dir2,subj),'data','words','labels','-v7.3');
 end
 
