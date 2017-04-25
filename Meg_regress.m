@@ -9,7 +9,7 @@ subjs = {'A','B','C','D','E','F','G','I','J'};
 
 A_percept = load(sprintf('%s20q_A_percept.mat',dir)); 
 num_words = 60;
-for i = 2:9,
+for i = 1:9,
     subj = subjs{i};
     fprintf('%i %s\n',i,datestr(now));
     sc = load(sprintf('%s%s_sensors_SSSt_SSP_LP50_DS200_tc_noBlinksSSP.mat',dir1,subj));
@@ -23,8 +23,9 @@ for i = 2:9,
     sc.data = permute(data,[2 1 3]);
     data = zscore(sc.data(:,:));
     size(data)
-   
+    size(A_percept.A_percept)
     p = zscore(A_percept.A_percept(labels,:));
+    size(p)
     [weightMatrix, r] = learn_text_from_fmri_kernel_sep_lambda_no_bias( p,data, 1);
     fprintf('%.g\n',median(r))
     p_1 = p;

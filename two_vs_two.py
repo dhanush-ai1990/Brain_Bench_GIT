@@ -4,7 +4,7 @@ import numpy as np
 from scipy.stats.stats import pearsonr
 import sys
 
-"""
+
 P1_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P1_MRI.npy"
 P2_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P2_MRI.npy"
 P3_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P3_MRI.npy"
@@ -14,7 +14,7 @@ P6_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewN
 P7_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P7_MRI.npy"
 P8_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P8_MRI.npy"
 P9_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/P9_MRI.npy"
-"""
+
 """
 P1_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P1_MRIA.npy"
 P2_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P2_MRIA.npy"
@@ -214,9 +214,9 @@ def run_test (input_file):
 	mask = obj['mask']
 	length = obj['length']
 	fMRI_score = 0
-	#fMRI_score = get_fMRI_average(input_mat, mask, length)
+	fMRI_score = get_fMRI_average(input_mat, mask, length)
 	MEG_score = 0
-	MEG_score = get_MEG_average(input_mat, mask, length)
+	#MEG_score = get_MEG_average(input_mat, mask, length)
 	EEG_score = 0
 	#EEG_score = get_EEG_average(input_mat, mask, length)
 	return [fMRI_score, MEG_score, length,EEG_score]
@@ -232,8 +232,8 @@ def main():
 		#scores = run_test(open(sys.argv[1], 'r'))
 		scores = run_test(input_file)
 		print "There are %d words found in BrainBench from the input" % scores[2]
-		#print "The fMRI score is %f" % scores[0]
-		print "The MEG score is %f" % scores[1]
+		print "The fMRI score is %f" % scores[0]
+		#print "The MEG score is %f" % scores[1]
 		#print "The EEG score is %f" % scores[3]
 
 if __name__ == "__main__":

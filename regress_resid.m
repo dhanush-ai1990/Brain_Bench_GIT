@@ -41,7 +41,6 @@ for i = 1:9
     data = data - x_fit;
     data = reshape(data,size(data1));
     size(data)
-    data = data1;
-    %save(sprintf('%s%s_raw_notavrg_percept_residual_test.mat',dir2,subj),'data','words','labels','-v7.3');
+    save(sprintf('%s%s_raw_notavrg_percept_residual_test.mat',dir2,subj),'data','words','labels','-v7.3');
 end
 

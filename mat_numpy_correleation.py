@@ -6,11 +6,11 @@ import sys
 
 #For data science file.
 
-outfile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Meg_data/NewNumpy/'
-#infile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/MRI_VoxelDone/'
-infile ='/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Meg_data/MEG_VoxelDone/'
-#subjs1 = ['P1','P2','P3','P4','P5','P6','P7','P8','P9']
-subjs1 = ['A','B','C','D','E','F','G','I','J'];
+outfile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/NewNumpy/'
+infile = '/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/MRI_VoxelDone/'
+#infile ='/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Meg_data/MEG_VoxelDone/'
+subjs1 = ['P1','P2','P3','P4','P5','P6','P7','P8','P9']
+#subjs1 = ['A','B','C','D','E','F','G','I','J'];
 length = 60
 
 """
@@ -111,7 +111,7 @@ for i in range(9):
 			input_mat[word1][word2] = pearsonr(vector1, vector2)[0]
 	# print (input_mat)	
 	print input_mat.shape
-	np.save(outfile+str(subjs1[i])+'_MEG.npy', input_mat)
+	np.save(outfile+str(subjs1[i])+'_MRI.npy', input_mat)
 
 
 
