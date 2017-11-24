@@ -103,9 +103,9 @@ for i in range(9):
   
 	# calculating correlation and generate the mattrix
 	for word1 in range (0,length):
-		vector1 = Brain_data[word1,:]
+		vector1 = Brain_data[word1]
 		for word2 in range (0,length):
-			vector2 = Brain_data[word2,:]
+			vector2 = Brain_data[word2]
 			#print vector1
 			#print vector2
 			input_mat[word1][word2] = pearsonr(vector1, vector2)[0]

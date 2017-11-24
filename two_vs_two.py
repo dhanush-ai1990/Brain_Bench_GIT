@@ -25,7 +25,7 @@ P6_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/New
 P7_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P7_MRIA.npy"
 P8_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P8_MRIA.npy"
 P9_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/NewNumpy/P9_MRIA.npy"
-"""
+
 
 A_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Meg_data/NewNumpy/A_MEG.npy"
 B_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Meg_data/NewNumpy/B_MEG.npy"
@@ -37,7 +37,6 @@ G_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Meg_data/NewNumpy/
 I_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Meg_data/NewNumpy/I_MEG.npy"
 J_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Meg_data/NewNumpy/J_MEG.npy"
 
-"""
 #EEG DATA
 A_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/EEG_data/NewNumpy/A_EEG.npy"
 B_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/EEG_data/NewNumpy/B_EEG.npy"
@@ -47,6 +46,30 @@ E_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/EEG_data/NewNumpy/
 F_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/EEG_data/NewNumpy/F_EEG.npy"
 G_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/EEG_data/NewNumpy/G_EEG.npy"
 """
+"""
+#ORG MEG DATA
+A_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/MEG_org/a.npy"
+B_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/MEG_org/b.npy"
+C_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/MEG_org/c.npy"
+D_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/MEG_org/d.npy"
+E_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/MEG_org/e.npy"
+F_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/MEG_org/f.npy"
+G_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/MEG_org/g.npy"
+G_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/MEG_org/i.npy"
+J_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/MEG_org/j.npy"
+
+
+P1_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/fMRI_org/b1.npy"
+P2_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/fMRI_org/b2.npy"
+P3_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/fMRI_org/b3.npy"
+P4_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/fMRI_org/b4.npy"
+P5_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/fMRI_org/b5.npy"
+P6_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/fMRI_org/b6.npy"
+P7_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/fMRI_org/b7.npy"
+P8_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/fMRI_org/b8.npy"
+P9_MAT = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/fMRI_org/b9.npy"
+"""
+
 
 DICTIONARY ="/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Michell_Data/Dictionary/dictionary_org.txt"
 #DICTIONARY = "/Users/Dhanush/Desktop/Projects/Brain_Bench/GIT_DATA/Anderson_Data/Dictionary/Anderson_words.txt"
@@ -100,9 +123,9 @@ def get_matrix_and_mask(vector_file):
 
 	# calculating correlation and generate the mattrix
 	for word1 in range (0,length):
-		vector1 = word_vector[word1,:]
+		vector1 = word_vector[word1]
 		for word2 in range (0,length):
-			vector2 = word_vector[word2,:]
+			vector2 = word_vector[word2]
 			#print vector1
 			#print vector2
 			input_mat[word1][word2] = pearsonr(vector1, vector2)[0]
