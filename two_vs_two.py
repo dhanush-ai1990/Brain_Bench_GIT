@@ -172,7 +172,10 @@ def two_vs_two (input_mat, brain_mat, length):
 			#print mask
 			#print len(b_2_b_masked)
 			#print mask
-
+			print b_1_a_masked
+			print b_1_a_masked.shape
+			print b_2_a_masked.shape
+			raise Exception ("Done")
 			part_a = pearsonr(b_1_a_masked, b_2_a_masked)[0] + pearsonr(b_1_b_masked, b_2_b_masked)[0]
 			part_b = pearsonr(b_1_a_masked, b_2_b_masked)[0] + pearsonr(b_1_b_masked, b_2_a_masked)[0]
 			# part_a = distance.cosine(b_1_a_masked, b_2_a_masked) + distance.cosine(b_1_b_masked, b_2_b_masked)
